@@ -38,6 +38,8 @@ keyhunt.qh
 
 antilag.qh
 
+classbased.qh
+
 vote.qh
 
 scores_rules.qc
@@ -110,7 +112,12 @@ cl_weapons.qc
 //g_tetris.qc
 cl_impulse.qc
 
+
 ent_cs.qc
+
+
+classbased.qc
+
 
 cl_player.qc
 cl_client.qc
@@ -143,9 +150,6 @@ assault.qc
 ipban.qc
 
 ../common/mapinfo.qc
-
-
-
 
 t_quake3.qc
 t_halflife.qc

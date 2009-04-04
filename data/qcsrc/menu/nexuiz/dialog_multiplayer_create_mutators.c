@@ -72,6 +72,8 @@ string toStringNexuizMutatorsDialog(entity me)
 		s = strcat(s, ", ", WeaponArenaString());
 	if(cvar("sv_gravity") < 800)
 		s = strcat(s, ", Low gravity");
+	if(cvar("g_classbased"))
+		s = strcat(s, ", Class based gameplay");
 	if(cvar("g_cloaked"))
 		s = strcat(s, ", Cloaked");
 	if(cvar("g_footsteps"))
@@ -231,6 +233,8 @@ void fillNexuizMutatorsDialog(entity me)
 		me.TD(me, 1, 4, e = makeNexuizRadioButton(1, "g_minstagib", string_null, "MinstaGib"));
 	me.TR(me);
 		me.TD(me, 1, 4, e = makeNexuizRadioButton(1, "g_nixnex", string_null, "NixNex"));
+    me.TR(me);
+        me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_classbased", string_null, "Class based gameplay"));
 	me.TR(me);
 		me.TDempty(me, 0.2);
 		me.TD(me, 1, 3.8, e = makeNexuizCheckBox(0, "g_nixnex_with_laser", "with laser"));

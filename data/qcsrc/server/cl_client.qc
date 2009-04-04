@@ -615,19 +615,42 @@ void FixPlayermodel()
 
 	defaultmodel = "";
 
-	if(cvar("sv_defaultcharacter") == 1) {
+	if((cvar("sv_defaultcharacter") == 1 || g_classbased) || (cvar("sv_defaultcharacter") == 1 && g_classbased)) {
 		defaultskin = 0;
-
-		if(teams_matter)
-		{
-			defaultmodel = cvar_string(strcat("sv_defaultplayermodel_", Team_ColorNameLowerCase(self.team)));
-			defaultskin = cvar(strcat("sv_defaultplayerskin_", Team_ColorNameLowerCase(self.team)));
+		if(cvar("g_classbased")) {
+			if(self.gamerole == "soldier") {
+				defaultmodel = "models/player/marine.zym";
+			}
+			else if(self.gamerole == "medic") {
+				defaultmodel = "models/player/pyria.zym";
+			}
+			else if(self.gamerole == "engineer") {
+				defaultmodel = "models/player/shock.zym";
+			}
+			else if(self.gamerole == "fieldops") {
+				defaultmodel = "models/player/insurrectionist.zym";
+			}
+			else if(self.gamerole == "covertops") {
+				defaultmodel = "models/player/specop.zym";
+			}
+			
+			if(teams_matter)
+			{
+				defaultskin = cvar(strcat("sv_defaultplayerskin_", Team_ColorNameLowerCase(self.team)));
+			}
 		}
+		else {
+			if(teams_matter)
+			{
+				defaultmodel = cvar_string(strcat("sv_defaultplayermodel_", Team_ColorNameLowerCase(self.team)));
+				defaultskin = cvar(strcat("sv_defaultplayerskin_", Team_ColorNameLowerCase(self.team)));
+			}
 
-		if(defaultmodel == "")
-		{
-			defaultmodel = cvar_string("sv_defaultplayermodel");
-			defaultskin = cvar("sv_defaultplayerskin");
+			if(defaultmodel == "")
+			{
+				defaultmodel = cvar_string("sv_defaultplayermodel");
+				defaultskin = cvar("sv_defaultplayerskin");
+			}
 		}
 	}
 
@@ -722,6 +745,8 @@ void PutClientInServer (void)
 	if(!self.spawned)
 		self.classname = "observer";
 
+	if(g_classbased) cb_changerole(self, self.nextgamerole);
+	
 	if(self.classname == "player") {
 		entity spot, oldself;
 
@@ -873,7 +898,7 @@ void PutClientInServer (void)
 
 		self.cnt = WEP_LASER;
 		self.nixnex_lastchange_id = -1;
-
+		if(g_classbased) cb_weapmodifiers();
 		CL_SpawnWeaponentity();
 		self.alpha = default_player_alpha;
 		self.colormod = '1 1 1' * cvar("g_player_brightness");
@@ -2028,7 +2053,11 @@ void LeaveSpectatorMode()
 				centerprint(self,""); // clear MOTD
 			return;
 		} else {
-			stuffcmd(self,"menu_showteamselect\n");
+            if(!cvar("g_classbased")) {
+    			stuffcmd(self,"menu_showteamselect\n");
+            } else {
+                stuffcmd(self, "menu_showlimbo\n");
+            }
 			return;
 		}
 	}
@@ -2132,6 +2161,8 @@ void ObserverThink()
 			}
 		}
 	} else {
+		if(cvar("g_classbased")) { stuffcmd(self,"menu_showlimbo\n"); }
+		else { stuffcmd(self,"menu_showteamselect\n"); }
 		if (!(self.BUTTON_ATCK || self.BUTTON_JUMP)) {
 			self.flags |= FL_JUMPRELEASED;
 			if(self.flags & FL_SPAWNING)

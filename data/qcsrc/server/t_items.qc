@@ -610,7 +610,7 @@ void StartItem (string itemmodel, string pickupsound, float defaultrespawntime, 
 
 		weaponsInMap |= weaponid;
 
-		if(g_lms)
+		if(g_lms || g_classbased) //class based play is all about relying on your teammates for ammo
 		{
 			startitem_failed = TRUE;
 			remove(self);

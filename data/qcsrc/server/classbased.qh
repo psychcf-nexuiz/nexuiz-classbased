@@ -1,0 +1,3 @@
+.string gamerole;
+.string nextgamerole;
+void cb_changerole(entity e, string class);

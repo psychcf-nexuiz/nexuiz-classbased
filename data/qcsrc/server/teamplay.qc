@@ -342,6 +342,7 @@ void InitGameplayMode()
 
 	cache_mutatormsg = strzone("");
 	cache_lastmutatormsg = strzone("");
+	g_classbased = cvar("g_classbased");
 
 	// enforce the server's universal frag/time limits
 	if(!cvar("g_campaign"))
@@ -449,6 +450,8 @@ void PrintWelcomeMessage(entity pl)
 	if(g_jetpack)
 		modifications = strcat(modifications, ", Jet pack");
 	modifications = substring(modifications, 2, strlen(modifications) - 2);
+	else if(g_classbased)
+		mutator = "^2Class Based ^1";
 
 	local string versionmessage;
 	versionmessage = GetClientVersionMessage();
