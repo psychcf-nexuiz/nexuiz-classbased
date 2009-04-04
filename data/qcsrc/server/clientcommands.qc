@@ -140,7 +140,8 @@ void SV_ParseClientCommand(string s) {
 			//JoinBestTeam(self, FALSE, TRUE);
 		} else if(teams_matter && !cvar("sv_spectate")) {
 			self.classname = "observer";
-			stuffcmd(self,"menu_showteamselect\n");
+			if(cvar("g_classbased")) { stuffcmd(self,"menu_showlimbo\n"); }
+			else { stuffcmd(self,"menu_showteamselect\n"); }
 		}
 	} else if(argv(0) == "reportcvar") { // old system
 		if(substring(argv(2), 0, 1) == "$") // undefined cvar: use the default value on the server then

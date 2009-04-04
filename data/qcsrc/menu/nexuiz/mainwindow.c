@@ -31,6 +31,10 @@ void configureMainWindowMainWindow(entity me)
 	i = spawnNexuizTeamSelectDialog();
 	i.configureDialog(i);
 	me.addItemCentered(me, i, i.intendedWidth * eX + i.intendedHeight * eY, SKINALPHAS_MAINMENU_z);
+	
+	i = spawnNexuizLimboDialog();
+	i.configureDialog(i);
+	me.addItemCentered(me, i, i.intendedWidth * eX + i.intendedHeight * eY, SKINALPHAS_MAINMENU_z);
 
 	me.mutatorsDialog = i = spawnNexuizMutatorsDialog();
 	i.configureDialog(i);
