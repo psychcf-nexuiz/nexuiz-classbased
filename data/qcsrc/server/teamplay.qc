@@ -449,9 +449,10 @@ void PrintWelcomeMessage(entity pl)
 		modifications = strcat(modifications, ", Bloodloss");
 	if(g_jetpack)
 		modifications = strcat(modifications, ", Jet pack");
+	if(g_classbased)
+		modifications = strcat(modifications, ", Class Based");
+
 	modifications = substring(modifications, 2, strlen(modifications) - 2);
-	else if(g_classbased)
-		mutator = "^2Class Based ^1";
 
 	local string versionmessage;
 	versionmessage = GetClientVersionMessage();
