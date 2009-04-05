@@ -250,10 +250,16 @@ void fillNexuizMutatorsDialog(entity me)
 	me.TR(me);
 		me.TD(me, 1, 4, makeNexuizTextLabel(0, "Special arenas:"));
 	me.TR(me);
+<<<<<<< HEAD:data/qcsrc/menu/nexuiz/dialog_multiplayer_create_mutators.c
 		me.TDempty(me, 0.2);
 		me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_minstagib", string_null, "MinstaGib"));
     me.TR(me);
         me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_classbased", string_null, "Class based gameplay"));
+=======
+		me.TD(me, 1, 4, e = makeNexuizRadioButton(1, "g_minstagib", string_null, "MinstaGib"));
+	me.TR(me);
+		me.TD(me, 1, 4, e = makeNexuizRadioButton(1, "g_nixnex", string_null, "NixNex"));
+>>>>>>> more fixes to the mutators menu:data/qcsrc/menu/nexuiz/dialog_multiplayer_create_mutators.c
 	me.TR(me);
 		me.TDempty(me, 0.2);
 		me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_nixnex", string_null, "NixNex"));
