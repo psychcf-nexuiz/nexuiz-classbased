@@ -69,20 +69,8 @@ void cb_weapmodifiers(void) {
 
 float cb_getmaxh(entity e)
 {
-	if(e.gamerole == "medic") {
-		return MEDIC_MAXH;
-	} else if(e.gamerole == "engineer") {
-		return ENGINEER_MAXH;
-	} else if(e.gamerole == "fieldops") {
-		return FIELDOPS_MAXH;
-	} else if(e.gamerole == "covertops") {
-		return COVERTOPS_MAXH;
-	} else if(e.gamerole == "soldier") {
-		return SOLDIER_MAXH;
-	}
-	
-	//WARNING this should never happen if we're playing classbased
-	// return a sane default just in case
-	return cvar("g_balance_health_stable");
+	local string maxh = strcat("g_balance_", e.gamerole, "_health_stable");
+
+	return cvar(maxh);
 }
 
