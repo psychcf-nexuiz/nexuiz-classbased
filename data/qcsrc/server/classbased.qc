@@ -30,10 +30,10 @@ void cb_changerole(entity e, string class) {
 }
 
 void cb_weapmodifiers(void) {
-	self.weapons = WEP_LASER | WEP_SHOTGUN;
+	self.weapons = W_WeaponBit(WEP_LASER) | W_WeaponBit(WEP_SHOTGUN);
 	if(self.gamerole == "soldier") {
 		//soldiers blow stuff up
-		self.weapons = self.weapons | WEP_ROCKET_LAUNCHER | WEP_HAGAR | WEP_GRENADE_LAUNCHER;
+		self.weapons = self.weapons | W_WeaponBit(WEP_ROCKET_LAUNCHER) | W_WeaponBit(WEP_HAGAR) | W_WeaponBit(WEP_GRENADE_LAUNCHER);
 		weapon_action(WEP_ROCKET_LAUNCHER, WR_PRECACHE);
 		weapon_action(WEP_HAGAR, WR_PRECACHE);
 		weapon_action(WEP_GRENADE_LAUNCHER, WR_PRECACHE);
@@ -41,7 +41,7 @@ void cb_weapmodifiers(void) {
 	}
 	if(self.gamerole == "covertops") {
 		//covert ops get to snipe
-		self.weapons = self.weapons | WEP_NEX;
+		self.weapons = self.weapons | W_WeaponBit(WEP_NEX);
 		weapon_action(WEP_NEX, WR_PRECACHE);
 		self.ammo_cells = cvar("g_balance_classbased_covert_start_ammo_cells");
 	}
@@ -49,11 +49,11 @@ void cb_weapmodifiers(void) {
 	|| self.gamerole == "fieldops"
 	|| self.gamerole == "medic") {
 		//all these guys need lightweight weapons
-		self.weapons = self.weapons | WEP_UZI;
+		self.weapons = self.weapons | W_WeaponBit(WEP_UZI);
 		weapon_action(WEP_UZI, WR_PRECACHE);
 		self.ammo_shells = cvar("g_balance_classbased_start_ammo_shells");
 		//they also get utility items, which behave differently depending on the class
-		self.weapons = self.weapons | WEP_CRYLINK | WEP_ELECTRO;
+		self.weapons = self.weapons | W_WeaponBit(WEP_CRYLINK) | W_WeaponBit(WEP_ELECTRO);
 		weapon_action(WEP_ELECTRO, WR_PRECACHE);
 		weapon_action(WEP_CRYLINK, WR_PRECACHE);
 		self.ammo_cells = cvar("g_balance_classbased_start_ammo_cells");
@@ -61,7 +61,7 @@ void cb_weapmodifiers(void) {
 	}
 	if(self.gamerole == "engineer"
 	|| self.gamerole == "fieldops") {
-		self.weapons = self.weapons | WEP_GRENADE_LAUNCHER;
+		self.weapons = self.weapons | W_WeaponBit(WEP_GRENADE_LAUNCHER);
 		weapon_action(WEP_GRENADE_LAUNCHER, WR_PRECACHE);
 		self.ammo_rockets = cvar("g_balance_classbased_start_ammo_rockets");
 	}
