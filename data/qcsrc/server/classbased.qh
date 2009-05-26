@@ -1,3 +1,10 @@
 .string gamerole;
 .string nextgamerole;
 void cb_changerole(entity e, string class);
+float cb_getmaxh(entity e);
+
+float MEDIC_MAXH	=	120;
+float ENGINEER_MAXH	=	100;
+float FIELDOPS_MAXH	=	85;
+float COVERTOPS_MAXH	=	80;
+float SOLDIER_MAXH	=	150;
