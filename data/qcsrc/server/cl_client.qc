@@ -1776,7 +1776,13 @@ float CalcRegen(float current, float stable, float regenfactor)
 void player_regen (void)
 {
 	float maxh, maxa, maxf, limith, limita, limitf, max_mod, regen_mod, rot_mod, limit_mod;
-	maxh = cvar("g_balance_health_stable");
+
+	if(g_classbased) {
+		maxh = cb_getmaxh(self);
+	} else {
+		maxh = cvar("g_balance_health_stable");
+	}
+
 	maxa = cvar("g_balance_armor_stable");
 	maxf = cvar("g_balance_fuel_stable");
 	limith = cvar("g_balance_health_limit");
