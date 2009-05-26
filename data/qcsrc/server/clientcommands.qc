@@ -111,6 +111,10 @@ void SV_ParseClientCommand(string s) {
 		return;
 	} else if(GameCommand_MapVote(argv(0))) {
 		return;
+	} else if(argv(0) == "selectclass" && cvar("g_classbased")) {
+		if(self.nextgamerole)
+			strunzone(self.nextgamerole);
+		self.nextgamerole = strzone(argv(1));
 	} else if(argv(0) == "autoswitch") {
 		// be backwards compatible with older clients (enabled)
 		self.autoswitch = ("0" != argv(1));
