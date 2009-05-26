@@ -73,4 +73,3 @@ float cb_getmaxh(entity e)
 
 	return cvar(maxh);
 }
-
