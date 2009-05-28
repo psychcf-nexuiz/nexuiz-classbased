@@ -69,7 +69,7 @@ void cb_weapmodifiers(void) {
 
 float cb_getmaxh(entity e)
 {
-	local string maxh = strcat("g_balance_", e.gamerole, "_health_stable");
+	local string maxh = strcat("g_balance_classbased_", e.gamerole, "_health_stable");
 
 	return cvar(maxh);
 }
