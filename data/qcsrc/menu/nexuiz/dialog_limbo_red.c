@@ -40,7 +40,7 @@ void fillNexuizLimboDialogRedTab(entity me)
 
 	me.gotoRC(me, me.rows - 1, 0);
 		me.TD(me, 1, me.columns/2, makeNexuizCommandButton("Deploy", '1 0.5 0.5', "cmd selectclass $player_class\ncmd selectteam red\ncmd join", 1));
-		me.TD(me, 1, me.columns/2, makeNexuizCommandButton("Respawn", '1 0.5 0.5', "kill\n", 1));
+		me.TD(me, 1, me.columns/2, makeNexuizCommandButton("Respawn", '1 0.5 0.5', "cmd selectclass $player_class\nkill\n", 1));
 }
 
 #endif
