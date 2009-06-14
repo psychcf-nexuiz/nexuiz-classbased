@@ -186,7 +186,6 @@ void fillNexuizMutatorsDialog(entity me)
 		me.TDempty(me, 0.4);
 		me.TD(me, 1, 1.8, s);
 	me.TR(me);
-		me.TDempty(me, 0.2);
 		s = makeNexuizSlider(80, 400, 8, "sv_gravity");
 			s.valueDigits = 0;
 			s.valueDisplayMultiplier = 0.125; // show gravity in percent
@@ -250,16 +249,11 @@ void fillNexuizMutatorsDialog(entity me)
 	me.TR(me);
 		me.TD(me, 1, 4, makeNexuizTextLabel(0, "Special arenas:"));
 	me.TR(me);
-<<<<<<< HEAD:data/qcsrc/menu/nexuiz/dialog_multiplayer_create_mutators.c
 		me.TDempty(me, 0.2);
-		me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_minstagib", string_null, "MinstaGib"));
-    me.TR(me);
         me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_classbased", string_null, "Class based gameplay"));
-=======
-		me.TD(me, 1, 4, e = makeNexuizRadioButton(1, "g_minstagib", string_null, "MinstaGib"));
 	me.TR(me);
-		me.TD(me, 1, 4, e = makeNexuizRadioButton(1, "g_nixnex", string_null, "NixNex"));
->>>>>>> more fixes to the mutators menu:data/qcsrc/menu/nexuiz/dialog_multiplayer_create_mutators.c
+        me.TDempty(me, 0.2);
+		me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_minstagib", string_null, "MinstaGib"));
 	me.TR(me);
 		me.TDempty(me, 0.2);
 		me.TD(me, 1, 2, e = makeNexuizRadioButton(1, "g_nixnex", string_null, "NixNex"));
