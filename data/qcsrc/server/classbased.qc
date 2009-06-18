@@ -73,3 +73,93 @@ float cb_getmaxh(entity e)
 
 	return cvar(maxh);
 }
+
+void cb_autoselect_class(entity e)
+{
+    entity p;
+    float r;
+    if(!cvar("g_classbased"))
+    {
+        return; //don't need to do this if classbased mode is disabled
+    }
+
+    classtally[CLASS_MEDIC] = 0;
+    classtally[CLASS_ENGINEER] = 0;
+    classtally[CLASS_FIELDOPS] = 0;
+    classtally[CLASS_COVERTOPS] = 0;
+    classtally[CLASS_SOLDIER] = 0;
+    // tally up how much of each class the team has
+    FOR_EACH_CLIENT(p)
+    {
+        if(p.team == e.team)
+        {
+            // probably not the best way of doing this...
+            if(p.gamerole == "medic")
+            {
+                classtally[CLASS_MEDIC] = classtally[CLASS_MEDIC]+1;
+            }
+            if(p.gamerole == "engineer")
+            {
+                classtally[CLASS_ENGINEER] = classtally[CLASS_ENGINEER]+1;
+            }
+            if(p.gamerole == "fieldops")
+            {
+                classtally[CLASS_FIELDOPS] = classtally[CLASS_FIELDOPS]+1;
+            }
+            if(p.gamerole == "covertops")
+            {
+                classtally[CLASS_COVERTOPS] = classtally[CLASS_COVERTOPS]+1;
+            }
+            if(p.gamerole == "soldier")
+            {
+                classtally[CLASS_SOLDIER] = classtally[CLASS_SOLDIER]+1;
+            }
+        }
+    }
+    // now figure out which class is needed the most
+    // this probably isn't the right way to do it, but
+    // I don't know quakeC well enough to do it any other way
+    e.gamerole = "soldier";
+    if(classtally[CLASS_SOLDIER] > classtally[CLASS_MEDIC])
+    {
+        e.gamerole = "medic";
+    }
+    else if(classtally[CLASS_MEDIC] > classtally[CLASS_ENGINEER])
+    {
+        e.gamerole = "engineer";
+    }
+    else if(classtally[CLASS_ENGINEER] > classtally[CLASS_FIELDOPS])
+    {
+        e.gamerole = "fieldops";
+    }
+    else if(classtally[CLASS_FIELDOPS] > classtally[CLASS_COVERTOPS])
+    {
+        e.gamerole = "covertops";
+    }
+    else
+    {
+        //pick at random
+        r = random() * NUMBER_OF_CLASSES;
+        if(r < CLASS_MEDIC)
+        {
+            e.gamerole = "medic";
+        }
+        else if(r < CLASS_ENGINEER)
+        {
+            e.gamerole = "engineer";
+        }
+        else if(r < CLASS_FIELDOPS)
+        {
+            e.gamerole = "fieldops";
+        }
+        else if(r < CLASS_COVERTOPS)
+        {
+            e.gamerole = "covertops";
+        }
+        else
+        {
+            e.gamerole = "soldier";
+        }
+    }
+    return;
+}

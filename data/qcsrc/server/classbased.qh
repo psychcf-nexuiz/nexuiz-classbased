@@ -1,4 +1,13 @@
 .string gamerole;
 .string nextgamerole;
+float NUMBER_OF_CLASSES = 5; //num of classes that we have
+float CLASS_MEDIC = 1;
+float CLASS_ENGINEER = 2;
+float CLASS_FIELDOPS = 3;
+float CLASS_COVERTOPS = 4;
+float CLASS_SOLDIER = 5;
+float classtally[NUMBER_OF_CLASSES];
 void cb_changerole(entity e, string class);
 float cb_getmaxh(entity e);
+void cb_autoselect_class(entity e);
+void cb_weapmodifiers(void);

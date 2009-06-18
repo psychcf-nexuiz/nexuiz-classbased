@@ -2499,6 +2499,7 @@ void bot_think()
 	{
 		if (self.deadflag == DEAD_DEAD)
 		{
+            cb_autoselect_class(self);
 			self.BUTTON_JUMP = 1; // press jump to respawn
 			self.bot_strategytime = 0;
 		}
@@ -2606,6 +2607,7 @@ entity bot_spawn()
 		ClientConnect();
 		PutClientInServer();
 		self = oldself;
+        cb_autoselect_class(bot);
 	}
 	return bot;
 };
