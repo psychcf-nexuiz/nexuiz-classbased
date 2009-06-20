@@ -494,8 +494,9 @@ void PlayerDamage (entity inflictor, entity attacker, float damage, float deatht
 		self.alpha = 1;
 		// clear selected player display
 		ClearSelectedPlayer();
-		// throw a weapon
-		SpawnThrownWeapon (self.origin + (self.mins + self.maxs) * 0.5, self.switchweapon);
+		// throw a weapon if its not classbased
+		if(!cvar("g_classbased"))
+			SpawnThrownWeapon (self.origin + (self.mins + self.maxs) * 0.5, self.switchweapon);
 		// print an obituary message
 		Obituary (attacker, inflictor, self, deathtype);
 		race_PreDie();
